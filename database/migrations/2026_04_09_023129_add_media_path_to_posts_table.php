@@ -9,13 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
+   public function up(): void
+{
+    if (Schema::hasTable('posts') && !Schema::hasColumn('posts', 'media_path')) {
         Schema::table('posts', function (Blueprint $table) {
-            // Add media_path column (nullable, for images/videos)
             $table->string('media_path')->nullable()->after('content');
         });
     }
+}
 
     /**
      * Reverse the migrations.

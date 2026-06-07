@@ -23,8 +23,8 @@ class AuthController extends Controller
             'password' => [
                 'required',
                 'string',
-                'size:8',
-                'regex:/^(?=.*[\d\W]).{8}$/',
+                'min:8',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/',
             ],
             'confirm_password' => 'required|same:password',
         ]);
@@ -465,9 +465,15 @@ class AuthController extends Controller
     {
         DB::table('notifications')
             ->where('username', $username)
+            ->where('is_read', 0)
             ->update(['is_read' => 1]);
 
-        return ['success' => true, 'action' => 'read_notifications'];
+        $newCount = (int) DB::table('notifications')
+            ->where('username', $username)
+            ->where('is_read', 0)
+            ->count();
+
+        return ['success' => true, 'action' => 'read_notifications', 'new_count' => $newCount];
     }
 
     private function insertNotification(string $username, string $type, int $postId, string $sender): void

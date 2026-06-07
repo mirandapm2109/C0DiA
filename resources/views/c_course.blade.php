@@ -5,7 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C Programming Course</title>
-    <link rel="stylesheet" href="{{ asset('html.css') }}">
+    <style>
+       body{
+    margin:0;
+    font-family:'Segoe UI', sans-serif;
+    background:#f8fafc;
+    color:#1e293b;
+    display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:240px;
+    background:#ffffff;
+    height:100vh;
+    padding:20px;
+    border-right:1px solid #e2e8f0;
+}
+
+.sidebar h2{
+    color:#b91c1c;
+    margin-bottom:30px;
+}
+
+.sidebar a{
+    display:block;
+    padding:10px;
+    margin-bottom:10px;
+    text-decoration:none;
+    color:#475569;
+    border-radius:8px;
+}
+
+.sidebar a:hover{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+/* MAIN */
+.main{
+    flex:1;
+    padding:30px;
+}
+    </style>
 </head>
 
 <body>

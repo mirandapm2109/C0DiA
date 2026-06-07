@@ -12,7 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->timestamps();
+            if (!Schema::hasColumn('users', 'created_at')) {
+                $table->timestamp('created_at')->nullable();
+            }
+
+            if (!Schema::hasColumn('users', 'updated_at')) {
+                $table->timestamp('updated_at')->nullable();
+            }
         });
     }
 
@@ -22,7 +28,13 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropTimestamps();
+            if (Schema::hasColumn('users', 'created_at')) {
+                $table->dropColumn('created_at');
+            }
+
+            if (Schema::hasColumn('users', 'updated_at')) {
+                $table->dropColumn('updated_at');
+            }
         });
     }
 };

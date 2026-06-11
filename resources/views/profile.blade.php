@@ -415,7 +415,7 @@ img.post-avatar{
     <img
         src="{{ $userData->profile_pic ? asset('storage/'.$userData->profile_pic) : 'https://via.placeholder.com/120' }}"
         alt="Profile Picture"
-        class="profile-pic"
+        class="main-profile-pic"
     >
 </div>
                 <!-- INFO -->

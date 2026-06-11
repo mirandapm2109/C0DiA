@@ -29,7 +29,21 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/cpp-course', 'cppCourse')->name('cpp.course');
     Route::get('/java-course', 'javaCourse')->name('java.course');
 });
+Route::get('/forgot-password', function () {
+    return redirect()->route('home')->with('error', 'Password reset is not available yet.');
+})->name('password.request');
 
+Route::get('/auth/google', function () {
+    return redirect()->route('home')->with('error', 'Google login is not available yet.');
+})->name('auth.google');
+
+Route::get('/auth/github', function () {
+    return redirect()->route('home')->with('error', 'GitHub login is not available yet.');
+})->name('auth.github');
+
+Route::get('/auth/facebook', function () {
+    return redirect()->route('home')->with('error', 'Facebook login is not available yet.');
+})->name('auth.facebook');
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
 Route::controller(CertificateController::class)->group(function () {

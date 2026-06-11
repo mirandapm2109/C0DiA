@@ -211,10 +211,14 @@ class AuthController extends Controller
     {
         $request->validate(['comment_id' => 'required|integer']);
 
-        DB::table('comments')
+        $deleted = DB::table('comments')
             ->where('id', $request->comment_id)
             ->where('username', $this->currentUsername())
             ->delete();
+
+        if ($request->ajax()) {
+            return response()->json(['success' => (bool) $deleted]);
+        }
 
         return redirect()->back();
     }
